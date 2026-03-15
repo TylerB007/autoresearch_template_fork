@@ -26,7 +26,7 @@ function main() {
   const scenarios = [
     {
       name: 'sideways-low-vol',
-      startTick: -23000,
+      startTick: 59650,
       durationDays: 30,
       volatility: 0.3,
       drift: 0,
@@ -34,7 +34,7 @@ function main() {
     },
     {
       name: 'sideways-med-vol',
-      startTick: -23000,
+      startTick: 59650,
       durationDays: 30,
       volatility: 0.5,
       drift: 0,
@@ -42,7 +42,7 @@ function main() {
     },
     {
       name: 'trending-up',
-      startTick: -23000,
+      startTick: 59650,
       durationDays: 30,
       volatility: 0.5,
       drift: 0.3,
@@ -50,7 +50,7 @@ function main() {
     },
     {
       name: 'trending-down',
-      startTick: -23000,
+      startTick: 59650,
       durationDays: 30,
       volatility: 0.5,
       drift: -0.3,
@@ -58,7 +58,7 @@ function main() {
     },
     {
       name: 'high-volatility',
-      startTick: -23000,
+      startTick: 59650,
       durationDays: 30,
       volatility: 1.0,
       drift: 0,
@@ -66,7 +66,7 @@ function main() {
     },
     {
       name: 'choppy-mean-reverting',
-      startTick: -23000,
+      startTick: 59650,
       durationDays: 30,
       volatility: 0.6,
       drift: 0.05,

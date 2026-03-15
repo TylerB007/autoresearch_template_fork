@@ -57,7 +57,7 @@ function main() {
     for (const scenario of scenarios) {
       console.log(`Scenario: ${scenario.name}`);
       const data = generateSyntheticData({
-        startTick: -23000, // Approximate HEX/WPLS tick
+        startTick: 59650, // HEX/WPLS tick (~390 WPLS per HEX at $0.0273/$0.00007)
         durationDays: 30,
         intervalSeconds: 60,
         volatility: scenario.volatility,
