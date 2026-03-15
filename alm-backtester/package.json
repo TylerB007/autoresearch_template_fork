@@ -1,0 +1,19 @@
+{
+  "name": "alm-backtester",
+  "version": "0.1.0",
+  "description": "Autoresearch-style autonomous strategy optimizer for V3 concentrated liquidity",
+  "type": "module",
+  "scripts": {
+    "prepare-data": "tsx prepare.ts",
+    "backtest": "tsx backtest.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.18"
+  }
+}
