@@ -1,0 +1,61 @@
+# V3 LP Auto-Rebalancer — Sonic Mainnet Configuration (Shadow.so)
+#
+# Shadow.so is a fork of the Aerodrome CL (Slipstream) architecture.
+# Set chain.chainId to 146 to use Sonic. Contract addresses are resolved
+# automatically from the chain registry — do not set them manually.
+#
+# Shadow.so fee tiers use tickSpacing as the pool identifier (Aerodrome CL pattern):
+#   tickSpacing 1   → stable pairs (~0.01% fee)
+#   tickSpacing 50  → standard pairs (~0.05-0.20% fee)
+#   tickSpacing 100 → standard pairs (alternate spacing)
+#   tickSpacing 200 → volatile pairs (~0.30% fee)
+#   tickSpacing 2000 → exotic pairs (~1.00% fee)
+
+polling_interval_seconds: 10  # Sonic has ~1s blocks, can poll frequently
+max_gas_price_gwei: 500       # Sonic gas (paid in S) is very cheap
+dry_run: true                 # ALWAYS start with dry_run: true on a new chain!
+slippage_tolerance_bps: 50    # 0.5% slippage — adjust based on pair liquidity
+rebalance_cooldown_seconds: 300
+swap_provider: "direct"       # No DEX aggregators available on Sonic — use SwapRouter directly
+
+# Contract addresses are resolved automatically from the chain registry.
+# You do NOT need to specify them here. They are hardcoded for security:
+#   NonfungiblePositionManager: 0xA57FA38b3fd45922394e9E1077748A2383F1542E
+#   SwapRouter:                 0x5543c6176feb9b4b179078205d7c29eea2e2d695
+#   Factory (ShadowV3Factory):  0xcD2d0637c94fe77C2896BbCBB174cefFb08DE6d7
+#   QuoterV2:                   0x219b7ADebc0935a3eC889a148c6924D51A07535A
+
+chain:
+  chainId: 146
+  # Override RPC URLs if needed (or set RPC_URL_PRIMARY in .env):
+  # rpcUrls:
+  #   - "https://rpc.soniclabs.com"
+
+notifications:
+  enabled: false
+  # telegram_bot_token and telegram_chat_id loaded from .env
+  discord_webhook_url: ""
+
+analytics:
+  enabled: true
+  snapshot_interval_minutes: 10
+  persist_to_disk: true
+  storage_path: "./analytics"
+
+positions:
+  # Example: wS/USDC position on Shadow.so (Sonic)
+  # Replace token_id with your actual Shadow.so NFT position ID.
+  # No 'dex' field needed — Shadow.so is the only DEX registered on Sonic.
+  - token_id: 0
+    chain_id: 146
+    strategy: "center_6pct"
+    params:
+      trigger_percentage: 0.2
+      confirm_minutes: 30
+
+# All strategies work identically on Sonic.
+# See config.yaml for the full strategy reference.
+#
+# Common wS token addresses on Sonic:
+#   Wrapped Sonic (wS): 0x039e2fB66102314Ce7b64Ce5Ce3E5183bc94aD38
+#   USDC:               0x29219dd400f2Bf60E5a23d13Be72B486D4038894

@@ -1,0 +1,9 @@
+[
+  {
+    "inputs": [{ "internalType": "address", "name": "pool", "type": "address" }],
+    "name": "gauges",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

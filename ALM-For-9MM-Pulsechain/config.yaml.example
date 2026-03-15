@@ -1,0 +1,72 @@
+# 9mm V3 LP Auto-Rebalancer Configuration
+# Copy this file to config.yaml and customize for your setup
+# Secrets (private key, Telegram token) go in .env — NOT here
+
+polling_interval_seconds: 30
+max_gas_price_gwei: 2000  # Maximum PLS to spend on gas per rebalance
+dry_run: true  # Start with true, set false only after testing
+slippage_tolerance_bps: 100
+
+# Swap routing provider (defaults to 'piteas' if not specified):
+# - 'piteas': Routes through Piteas DEX aggregator for best price across all PulseChain DEXes (RECOMMENDED)
+# - 'direct': Routes swaps through 9mm SwapRouter only (only use if pair has excellent 9mm liquidity)
+# swap_provider: "piteas"  # This is the default, no need to specify unless changing to 'direct'
+
+rebalance_cooldown_seconds: 300
+
+contracts:
+  nonfungiblePositionManager: "0xCC05bf158202b4F461Ede8843d76dcd7Bbad07f2"
+  swapRouter: "0xeB45a3c4aedd0F47F345fB4c8A1802BB5740d725"
+  factory: "0xe50dbdc88e87a2c92984d794bcf3d1d76f619c68"
+  quoter: "0x250D0399E3f363d98f8A27942712d59248C33007"
+
+chain:
+  chainId: 369
+  rpcUrls:
+    - "https://rpc.pulsechain.com"
+    - "https://rpc-pulsechain.g4mm4.io"
+    - "https://pulsechain-rpc.publicnode.com"
+
+notifications:
+  enabled: true
+  # telegram_bot_token and telegram_chat_id are loaded from .env
+  # Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in your .env file
+  discord_webhook_url: ""
+
+analytics:
+  enabled: true
+  snapshot_interval_minutes: 10
+  persist_to_disk: true
+  storage_path: "./analytics"
+
+positions:
+  - token_id: 0  # Replace with your NFT position token ID
+    strategy: "center_6pct"
+    params:
+      trigger_percentage: 1
+
+# Strategy Examples:
+#
+# Preset strategies (width built into the name):
+#   strategy: "center_3pct"    # ~3% range, neutral (50/50 split)
+#   strategy: "center_6pct"    # ~6% range, neutral (50/50 split)
+#   strategy: "bullish_3pct"   # ~3% range, bullish (30% below / 70% above)
+#   strategy: "bullish_6pct"   # ~6% range, bullish (30% below / 70% above)
+#   strategy: "bearish_3pct"   # ~3% range, bearish (70% below / 30% above)
+#   strategy: "bearish_6pct"   # ~6% range, bearish (70% below / 30% above)
+#
+# Custom width strategies (specify width_ticks or width_percentage in params):
+#   strategy: "center"         # Neutral, custom width
+#   strategy: "bullish"        # Bullish bias, custom width
+#   strategy: "bearish"        # Bearish bias, custom width
+#
+# Directional strategies:
+#   strategy: "lazy_up"        # Only rebalances when price moves above upper bound
+#   strategy: "lazy_down"      # Only rebalances when price moves below lower bound
+#
+# Monitoring only:
+#   strategy: "static"         # No auto-rebalancing, monitor only
+#
+# Legacy names (still supported):
+#   pulse, pulse_300, pulse_600, snuggle_up, snuggle_down,
+#   lazy_ascending, lazy_descending

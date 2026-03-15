@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Grep(*)",
+      "Read(*)",
+      "Glob(*)",
+      "WebFetch(*)",
+      "TodoWrite(*)",
+      "WebFetch(domain:scan.9mm.pro)",
+      "WebFetch(domain:dex.9mm.pro)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:basescan.org)",
+      "WebFetch(domain:www.degencode.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:docs.uniswap.org)",
+      "WebSearch"
+    ]
+  }
+}

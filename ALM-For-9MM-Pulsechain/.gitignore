@@ -1,0 +1,64 @@
+# Environment variables (never commit!)
+.env
+
+# Private key file (never commit!)
+.secret
+
+# Runtime config (may contain secrets, use config.yaml.example as template)
+config.yaml
+
+# MCP config (contains API tokens)
+.mcp.json
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Analytics data (runtime-generated, not source code)
+/analytics/
+analytics/chain-*/
+
+# Audit data (contains personal transaction history from Koinly exports)
+audit-data/
+analytics-vps/
+
+# Runtime state flags
+.rebalancing-disabled
+.recovery-state.json
+.recovery-state-*.json
+.rebalance-lock-*
+
+# Testing
+.cache/

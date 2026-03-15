@@ -1,0 +1,83 @@
+[
+  {
+    "inputs": [
+      { "name": "tokenA", "type": "address" },
+      { "name": "tokenB", "type": "address" },
+      { "name": "fee", "type": "uint24" }
+    ],
+    "name": "createPool",
+    "outputs": [{ "name": "pool", "type": "address" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "name": "tokenA", "type": "address" },
+      { "name": "tokenB", "type": "address" },
+      { "name": "fee", "type": "uint24" }
+    ],
+    "name": "getPool",
+    "outputs": [{ "name": "pool", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "name": "fee", "type": "uint24" }],
+    "name": "feeAmountTickSpacing",
+    "outputs": [{ "name": "", "type": "int24" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "name": "fee", "type": "uint24" }],
+    "name": "feeAmountTickSpacingExtraInfo",
+    "outputs": [
+      { "name": "whitelistRequested", "type": "bool" },
+      { "name": "enabled", "type": "bool" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "poolDeployer",
+    "outputs": [{ "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lmPoolDeployer",
+    "outputs": [{ "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "token0", "type": "address" },
+      { "indexed": true, "name": "token1", "type": "address" },
+      { "indexed": true, "name": "fee", "type": "uint24" },
+      { "indexed": false, "name": "tickSpacing", "type": "int24" },
+      { "indexed": false, "name": "pool", "type": "address" }
+    ],
+    "name": "PoolCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "fee", "type": "uint24" },
+      { "indexed": true, "name": "tickSpacing", "type": "int24" }
+    ],
+    "name": "FeeAmountEnabled",
+    "type": "event"
+  }
+]

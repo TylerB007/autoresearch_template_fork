@@ -1,0 +1,62 @@
+# Uniswap V3 LP Auto-Rebalancer — Base Mainnet Configuration
+#
+# To use Base instead of PulseChain, set chain.chainId to 8453.
+# Contract addresses are resolved automatically from the chain registry.
+# RPC URLs can be overridden via .env (RPC_URL_PRIMARY, etc.) or below.
+#
+# Base uses standard Uniswap V3 fee tiers (same as Ethereum):
+#   MEDIUM = 3000 (0.30%), tick spacing = 60
+
+polling_interval_seconds: 15  # Base has ~2s blocks, can poll faster
+max_gas_price_gwei: 100       # Base has very low gas costs
+dry_run: true                 # ALWAYS start with dry_run: true on a new chain!
+slippage_tolerance_bps: 50    # Base has good liquidity via Uniswap
+rebalance_cooldown_seconds: 300
+swap_provider: "direct"       # Piteas not available on Base — use direct SwapRouter
+
+# Contract addresses are resolved automatically from chain registry.
+# You do NOT need to specify them here. They are hardcoded for security:
+#   NonfungiblePositionManager: 0x03a520b32C04BF3bEEf7BEb72E919cf822Ed34f1
+#   SwapRouter:                 0x2626664c2603336E57B271c5C0b26F421741e481
+#   Factory:                    0x33128a8fC17869897dcE68Ed026d694621f6FDfD
+#   Quoter:                     0x3d4e44Eb1374240CE5F1B871ab261CD16335B76a
+
+chain:
+  chainId: 8453
+  # Override RPC URLs (or set RPC_URL_PRIMARY in .env):
+  # rpcUrls:
+  #   - "https://mainnet.base.org"
+  #   - "https://base-rpc.publicnode.com"
+  #   - "https://base.meowrpc.com"
+
+notifications:
+  enabled: false
+  # telegram_bot_token and telegram_chat_id loaded from .env
+  discord_webhook_url: ""
+
+analytics:
+  enabled: true
+  snapshot_interval_minutes: 10
+  persist_to_disk: true
+  storage_path: "./analytics"
+
+positions:
+  # Example: WETH/USDC position on Uniswap V3 (Base)
+  # Replace with your actual NFT position token_id
+  - token_id: 0
+    strategy: "pulse_600"
+    params:
+      trigger_percentage: 0.2
+
+  # Example: Aerodrome CL position with gauge staking
+  # When gauge_address is set, the bot auto-unstakes before rebalancing
+  # and re-stakes the new position after minting.
+  # - token_id: 0
+  #   dex: "aerodrome-cl"
+  #   strategy: "center_6pct"
+  #   params:
+  #     trigger_percentage: 0.2
+  #   gauge_address: "0x..."  # CLGauge contract address from aerodrome.finance
+
+# All strategies from PulseChain work identically on Base.
+# See config.yaml for the full strategy reference.

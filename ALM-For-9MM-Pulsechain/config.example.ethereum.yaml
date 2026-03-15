@@ -1,0 +1,54 @@
+# Uniswap V3 LP Auto-Rebalancer — Ethereum Mainnet Configuration
+#
+# To use Ethereum instead of PulseChain, set chain.chainId to 1.
+# Contract addresses are resolved automatically from the chain registry.
+# RPC URLs can be overridden via .env (RPC_URL_PRIMARY, etc.) or below.
+#
+# IMPORTANT: Ethereum uses different fee tiers than 9mm V3!
+#   - Uniswap V3 MEDIUM = 3000 (0.30%), tick spacing = 60
+#   - 9mm V3 MEDIUM     = 2500 (0.25%), tick spacing = 50
+# The bot resolves the correct fee/tick-spacing automatically from the chain registry.
+
+polling_interval_seconds: 30
+max_gas_price_gwei: 500    # Maximum ETH cost limit per rebalance (in gwei equivalent)
+dry_run: true              # ALWAYS start with dry_run: true on a new chain!
+slippage_tolerance_bps: 50 # Ethereum has deeper liquidity, lower slippage
+rebalance_cooldown_seconds: 600  # Longer cooldown due to higher gas costs
+swap_provider: "direct"    # Piteas not available on Ethereum — use direct SwapRouter
+
+# Contract addresses are resolved automatically from chain registry.
+# You do NOT need to specify them here. They are hardcoded for security:
+#   NonfungiblePositionManager: 0xC36442b4a4522E871399CD717aBDD847Ab11FE88
+#   SwapRouter:                 0xE592427A0AEce92De3Edee1F18E0157C05861564
+#   Factory:                    0x1F98431c8aD98523631AE4a59f267346ea31F984
+#   Quoter:                     0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6
+
+chain:
+  chainId: 1
+  # Override RPC URLs (or set RPC_URL_PRIMARY in .env):
+  # rpcUrls:
+  #   - "https://eth.llamarpc.com"
+  #   - "https://rpc.ankr.com/eth"
+  #   - "https://ethereum-rpc.publicnode.com"
+
+notifications:
+  enabled: false
+  # telegram_bot_token and telegram_chat_id loaded from .env
+  discord_webhook_url: ""
+
+analytics:
+  enabled: true
+  snapshot_interval_minutes: 10
+  persist_to_disk: true
+  storage_path: "./analytics"
+
+positions:
+  # Example: WETH/USDC position on Uniswap V3
+  # Replace with your actual NFT position token_id
+  - token_id: 0
+    strategy: "pulse_600"
+    params:
+      trigger_percentage: 0.2
+
+# All strategies from PulseChain work identically on Ethereum.
+# See config.yaml for the full strategy reference.
