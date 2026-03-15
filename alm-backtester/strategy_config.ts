@@ -40,7 +40,7 @@ const CONFIG: BacktestConfig = {
   pool_fee_bps: 2500,                // 9mm medium tier (0.25%)
   tick_spacing: 50,                  // 9mm medium tick spacing
   pool_liquidity_usd: 500_000,      // Total pool TVL in USD
-  daily_volume_usd: 100_000,        // Average daily trading volume
+  daily_volume_usd: 250_000,        // Average daily trading volume
 
   // ============================================================
   // TOKEN ASSUMPTIONS
