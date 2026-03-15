@@ -52,7 +52,7 @@ const CONFIG: BacktestConfig = {
   // COST ASSUMPTIONS — gas and slippage per rebalance
   // ============================================================
   gas_cost_per_rebalance_usd: 0.05,  // PulseChain is cheap
-  slippage_bps: 50,                  // 0.5% slippage per swap
+  slippage_bps: 25,                  // 0.25% slippage per swap
 
   // ============================================================
   // SIMULATION PARAMETERS
