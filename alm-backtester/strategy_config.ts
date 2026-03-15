@@ -18,7 +18,7 @@ const CONFIG: BacktestConfig = {
   strategy: 'center',
   width_ticks: 6000,                 // Range width in ticks (~6% for 9mm medium)
   trigger_distance_ticks: 50,        // How far OOR before rebalance triggers
-  confirm_minutes: 60,               // Must stay OOR for this long before rebalancing
+  confirm_minutes: 0,                // Must stay OOR for this long before rebalancing
   critical_distance_ticks: 200,      // Bypass confirmation if this far OOR
   lower_ratio_percent: 50,           // For bullish/bearish: % of width below current price
 
