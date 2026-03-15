@@ -16,7 +16,7 @@ const CONFIG: BacktestConfig = {
   // STRATEGY — which strategy to use and how it behaves
   // ============================================================
   strategy: 'center',
-  width_ticks: 6000,                 // Range width in ticks (~6% for 9mm medium)
+  width_ticks: 8000,                 // Range width in ticks (~6% for 9mm medium)
   trigger_distance_ticks: 50,        // How far OOR before rebalance triggers
   confirm_minutes: 0,                // Must stay OOR for this long before rebalancing
   critical_distance_ticks: 200,      // Bypass confirmation if this far OOR
